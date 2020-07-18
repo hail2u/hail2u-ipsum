@@ -5,18 +5,19 @@ Generating dummy text from Hail2u website
 
 ## Install
 
-    $ echo @hail2u:registry=https://npm.pkg.github.com >> .npmrc
-    $ npm install @hail2u/css-mqpacker
+    $ git clone https://github.com/hail2u/hail2u-ipsum
+    $ cd hail2u-ipsum
+	$ npm install
 
 
 ## Usage
 
-    $ hail2u-ipsum
+    $ node index.js
 
 
 ## Options
 
-    $ hail2u-ipsum --help
+    $ node index.js --help
 
 
 ## License

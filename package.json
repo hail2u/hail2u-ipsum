@@ -22,7 +22,5 @@
 		"he": "1.2.0",
 		"minimist": "1.2.5"
 	},
-	"publishConfig": {
-		"registry": "https://npm.pkg.github.com/"
-	}
+	"private": "true"
 }
