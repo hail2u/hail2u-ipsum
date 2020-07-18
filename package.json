@@ -1,0 +1,28 @@
+{
+	"name": "@hail2u/hail2u-ipsum",
+	"version": "0.0.0",
+	"description": "Generating dummy text from Hail2u website",
+	"homepage": "https://github.com/hail2u/hail2u-ipsum#readme",
+	"bugs": {
+		"url": "https://github.com/hail2u/hail2u-ipsum/issues"
+	},
+	"license": "MIT",
+	"author": "Kyo Nagashima <hail2u@gmail.com> (https://hail2u.net/)",
+	"files": [
+		"sentences.json"
+	],
+	"bin": {
+		"hail2u-ipsum": "index.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/hail2u/hail2u-ipsum.git"
+	},
+	"dependencies": {
+		"he": "1.2.0",
+		"minimist": "1.2.5"
+	},
+	"publishConfig": {
+		"registry": "https://npm.pkg.github.com/"
+	}
+}
