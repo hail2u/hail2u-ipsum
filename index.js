@@ -28,11 +28,11 @@ const argv = minimist(process.argv.slice(2), {
 const pkg = require("./package.json");
 
 if (argv.help) {
-	console.log(`hail2u-ipsum v${pkg.version}
+	console.log(`${pkg.name} v${pkg.version}
   ${pkg.description}
 
 Usage:
-  hail2u-ipsum [OPTION]...
+  node index.js [OPTION]...
 
 Options:
   -a, --amount=NUMBER      set output amount (default: 5)
