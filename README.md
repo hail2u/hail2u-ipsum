@@ -3,21 +3,14 @@
 Generating dummy text from Hail2u website
 
 
-## Install
-
-    $ git clone https://github.com/hail2u/hail2u-ipsum
-    $ cd hail2u-ipsum
-	$ npm install
-
-
 ## Usage
 
-    $ node index.js
+    $ npx hail2u:hail2u-ipsum
 
 
 ## Options
 
-    $ node index.js --help
+    $ npx hail2u:hail2u-ipsum --help
 
 
 ## License

@@ -3,6 +3,7 @@
 const decode = require("he").decode;
 const fs = require("fs");
 const minimist = require("minimist");
+const path = require("path");
 
 const argv = minimist(process.argv.slice(2), {
 	"alias": {
@@ -34,7 +35,7 @@ if (argv.help) {
   ${pkg.description}
 
 Usage:
-  node index.js [OPTION]...
+  npx github:hail2u/hail2u-ipsum [OPTION]...
 
 Options:
   -a, --amount=NUMBER      set output amount (default: 5)
@@ -67,7 +68,7 @@ if (type !== "li" && type !== "p") {
 	throw new Error("--type must be “li” or “p” (default: p)");
 }
 
-const sentences = JSON.parse(fs.readFileSync("./sentences.json", "utf8"));
+const sentences = JSON.parse(fs.readFileSync(path.join(__dirname, "./sentences.json"), "utf8"));
 let result = [];
 
 for (let i = 0; i < amount; i++) {
