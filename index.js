@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const decode = require("he").decode;
 const fs = require("fs");
 const minimist = require("minimist");
