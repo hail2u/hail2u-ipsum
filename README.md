@@ -5,12 +5,12 @@ Generating dummy text from Hail2u website
 
 ## Usage
 
-    $ npx hail2u:hail2u-ipsum
+    $ npx github:hail2u/hail2u-ipsum
 
 
 ## Options
 
-    $ npx hail2u:hail2u-ipsum --help
+    $ npx github:hail2u/hail2u-ipsum --help
 
 
 ## License
