@@ -23,7 +23,12 @@
 		"minimist": "1.2.5"
 	},
 	"devDependencies": {
-		"node-fetch": "2.6.1"
+		"eslint": "7.22.0",
+		"node-fetch": "2.6.1",
+		"prettier": "2.2.1"
+	},
+	"scripts": {
+		"test": "prettier --loglevel warn --write . && eslint ."
 	},
 	"private": "true",
 	"type": "module"

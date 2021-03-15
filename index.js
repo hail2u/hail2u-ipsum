@@ -1,7 +1,8 @@
 #!/usr/bin/env node
+/* eslint-disable no-console */
 
-import he from "he";
 import fs from "fs";
+import he from "he";
 import minimist from "minimist";
 
 const argv = minimist(process.argv.slice(2), {
@@ -10,24 +11,17 @@ const argv = minimist(process.argv.slice(2), {
 		format: "f",
 		help: "h",
 		type: "t",
-		version: "v"
+		version: "v",
 	},
-	boolean: [
-		"help",
-		"version"
-	],
+	boolean: ["help", "version"],
 	default: {
 		amount: "5",
 		format: "txt",
 		help: false,
 		type: "p",
-		version: false
+		version: false,
 	},
-	string: [
-		"amount",
-		"format",
-		"type"
-	]
+	string: ["amount", "format", "type"],
 });
 const pkgfile = new URL("./package.json", import.meta.url);
 const pkg = JSON.parse(fs.readFileSync(pkgfile, "utf8"));
@@ -55,22 +49,21 @@ if (argv.version) {
 }
 
 const amount = parseInt(argv.amount, 10);
-const format = argv.format;
-const type = argv.type;
+const { format, type } = argv;
 
 if (isNaN(amount) || amount < 1) {
-	throw new Error("--amount must be positive number (default: 5)")
+	throw new Error("--amount must be positive number (default: 5)");
 }
 
 if (format !== "html" && format !== "txt") {
-	throw new Error("--format must be “html” or “txt” (default: html)")
+	throw new Error("--format must be “html” or “txt” (default: html)");
 }
 
 if (type !== "li" && type !== "p") {
 	throw new Error("--type must be “li” or “p” (default: p)");
 }
 
-const sentencesFile =  new URL("./sentences.json", import.meta.url);
+const sentencesFile = new URL("./sentences.json", import.meta.url);
 const sentences = JSON.parse(fs.readFileSync(sentencesFile, "utf8"));
 let result = [];
 

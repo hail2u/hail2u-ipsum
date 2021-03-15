@@ -6,10 +6,11 @@ const src = "https://github.com/hail2u/hail2u.net/raw/main/data/articles.json";
 const main = async () => {
 	const res = await fetch(src);
 	const articles = await res.json();
-	const sentences = articles.map((a) => {
-			const txt = a.body.match(/<p>.*?<\/p>/gu)?.map((p) => {
-				return p.replace(/<.*?>/gu, "");
-			});
+	const sentences = articles
+		.map((a) => {
+			const txt = a.body
+				.match(/<p>.*?<\/p>/gu)
+				?.map((p) => p.replace(/<.*?>/gu, ""));
 
 			if (txt) {
 				return txt
