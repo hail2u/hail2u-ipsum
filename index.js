@@ -1,34 +1,36 @@
 #!/usr/bin/env node
 
-const decode = require("he").decode;
-const fs = require("fs");
-const minimist = require("minimist");
-const path = require("path");
+import he from "he";
+import fs from "fs";
+import minimist from "minimist";
 
 const argv = minimist(process.argv.slice(2), {
-	"alias": {
-		"amount": "a",
-		"format": "f",
-		"help": "h",
-		"type": "t",
-		"version": "v"
+	alias: {
+		amount: "a",
+		format: "f",
+		help: "h",
+		type: "t",
+		version: "v"
 	},
-	"boolean": [
-		"help"
+	boolean: [
+		"help",
+		"version"
 	],
-	"default": {
-		"amount": "5",
-		"format": "txt",
-		"help": false,
-		"type": "p"
+	default: {
+		amount: "5",
+		format: "txt",
+		help: false,
+		type: "p",
+		version: false
 	},
-	"string": [
+	string: [
 		"amount",
 		"format",
 		"type"
 	]
 });
-const pkg = require("./package.json");
+const pkgfile = new URL("./package.json", import.meta.url);
+const pkg = JSON.parse(fs.readFileSync(pkgfile, "utf8"));
 
 if (argv.help) {
 	console.log(`${pkg.name} v${pkg.version}
@@ -68,7 +70,8 @@ if (type !== "li" && type !== "p") {
 	throw new Error("--type must be “li” or “p” (default: p)");
 }
 
-const sentences = JSON.parse(fs.readFileSync(path.join(__dirname, "./sentences.json"), "utf8"));
+const sentencesFile =  new URL("./sentences.json", import.meta.url);
+const sentences = JSON.parse(fs.readFileSync(sentencesFile, "utf8"));
 let result = [];
 
 for (let i = 0; i < amount; i++) {
@@ -101,7 +104,7 @@ for (let i = 0; i < amount; i++) {
 }
 
 if (format === "txt") {
-	result = result.map(decode);
+	result = result.map(he.decode);
 }
 
 console.log(result.join("\n\n"));

@@ -22,5 +22,9 @@
 		"he": "1.2.0",
 		"minimist": "1.2.5"
 	},
-	"private": "true"
+	"devDependencies": {
+		"node-fetch": "2.6.1"
+	},
+	"private": "true",
+	"type": "module"
 }
