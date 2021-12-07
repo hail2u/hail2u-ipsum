@@ -56,7 +56,7 @@ if (isNaN(amount) || amount < 1) {
 }
 
 if (format !== "html" && format !== "txt") {
-	throw new Error("--format must be “html” or “txt” (default: html)");
+	throw new Error("--format must be “html” or “txt” (default: txt)");
 }
 
 if (type !== "li" && type !== "p") {
