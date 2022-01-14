@@ -7,29 +7,29 @@ const main = async () => {
 	const res = await fetch(src);
 	const articles = await res.json();
 	const sentences = articles
-		.map((a) => {
-			const txt = a.body
+		.map((article) => {
+			const txt = article.body
 				.match(/<p>.*?<\/p>/gu)
-				?.map((p) => p.replace(/<.*?>/gu, ""));
+				?.map((p) => p.replace(/<.*?>/gu, ""))
+				.join("");
 
 			if (txt) {
 				return txt
-					.join("")
 					.split("。")
-					.filter((s) => {
-						if (!s || /^[!-»]+$/iu.test(s)) {
+					.filter((sentence) => {
+						if (!sentence || /^[!-»]+$/iu.test(sentence)) {
 							return false;
 						}
 
 						return true;
 					})
-					.map((s) => `${s}。`);
+					.map((sentence) => `${sentence}。`);
 			}
 
 			return [];
 		})
 		.flat()
-		.filter((s) => s);
+		.filter((sentence) => sentence);
 	await fs.writeFile("sentences.json", JSON.stringify(sentences, null, "\t"));
 };
 
