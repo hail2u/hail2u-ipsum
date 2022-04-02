@@ -20,11 +20,11 @@
 	},
 	"dependencies": {
 		"he": "1.2.0",
-		"minimist": "1.2.5"
+		"minimist": "1.2.6"
 	},
 	"devDependencies": {
 		"eslint": "7.22.0",
-		"node-fetch": "2.6.1",
+		"node-fetch": "2.6.7",
 		"prettier": "2.2.1"
 	},
 	"scripts": {
