@@ -6,28 +6,28 @@ import he from "he";
 import minimist from "minimist";
 
 const argv = minimist(process.argv.slice(2), {
-	alias: {
-		amount: "a",
-		format: "f",
-		help: "h",
-		type: "t",
-		version: "v",
-	},
-	boolean: ["help", "version"],
-	default: {
-		amount: "5",
-		format: "txt",
-		help: false,
-		type: "p",
-		version: false,
-	},
-	string: ["amount", "format", "type"],
+  alias: {
+    amount: "a",
+    format: "f",
+    help: "h",
+    type: "t",
+    version: "v",
+  },
+  boolean: ["help", "version"],
+  default: {
+    amount: "5",
+    format: "txt",
+    help: false,
+    type: "p",
+    version: false,
+  },
+  string: ["amount", "format", "type"],
 });
 const pkgfile = new URL("./package.json", import.meta.url);
 const pkg = JSON.parse(fs.readFileSync(pkgfile, "utf8"));
 
 if (argv.help) {
-	console.log(`${pkg.name} v${pkg.version}
+  console.log(`${pkg.name} v${pkg.version}
   ${pkg.description}
 
 Usage:
@@ -40,27 +40,27 @@ Options:
   -h, --help               display this help and exit
   -v, --version            output version number and exit
 `);
-	process.exit();
+  process.exit();
 }
 
 if (argv.version) {
-	console.log(pkg.version);
-	process.exit();
+  console.log(pkg.version);
+  process.exit();
 }
 
 const amount = parseInt(argv.amount, 10);
 const { format, type } = argv;
 
 if (isNaN(amount) || amount < 1) {
-	throw new Error("--amount must be positive number (default: 5)");
+  throw new Error("--amount must be positive number (default: 5)");
 }
 
 if (format !== "html" && format !== "txt") {
-	throw new Error("--format must be “html” or “txt” (default: txt)");
+  throw new Error("--format must be “html” or “txt” (default: txt)");
 }
 
 if (type !== "li" && type !== "p") {
-	throw new Error("--type must be “li” or “p” (default: p)");
+  throw new Error("--type must be “li” or “p” (default: p)");
 }
 
 const sentencesFile = new URL("./sentences.json", import.meta.url);
@@ -68,36 +68,36 @@ const sentences = JSON.parse(fs.readFileSync(sentencesFile, "utf8"));
 let result = [];
 
 for (let i = 0; i < amount; i++) {
-	const bmount = Math.floor(Math.random() * 6 + 3);
-	let block = [];
+  const bmount = Math.floor(Math.random() * 6 + 3);
+  let block = [];
 
-	for (let j = 0; j < bmount; j++) {
-		block.push(sentences[Math.floor(Math.random() * sentences.length)]);
-	}
+  for (let j = 0; j < bmount; j++) {
+    block.push(sentences[Math.floor(Math.random() * sentences.length)]);
+  }
 
-	if (type === "li") {
-		if (format === "html") {
-			block = block.map((li) => `<li>${li}</li>`);
-			block.unshift("<ul>");
-			block.push("</ul>");
-		} else {
-			block = block.map((li) => `- ${li}`);
-		}
+  if (type === "li") {
+    if (format === "html") {
+      block = block.map((li) => `<li>${li}</li>`);
+      block.unshift("<ul>");
+      block.push("</ul>");
+    } else {
+      block = block.map((li) => `- ${li}`);
+    }
 
-		result.push(block.join("\n"));
-		continue;
-	}
+    result.push(block.join("\n"));
+    continue;
+  }
 
-	if (format === "html") {
-		block.unshift("<p>");
-		block.push("</p>");
-	}
+  if (format === "html") {
+    block.unshift("<p>");
+    block.push("</p>");
+  }
 
-	result.push(block.join(""));
+  result.push(block.join(""));
 }
 
 if (format === "txt") {
-	result = result.map(he.decode);
+  result = result.map(he.decode);
 }
 
 console.log(result.join("\n\n"));

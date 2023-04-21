@@ -1,35 +1,35 @@
 {
-	"name": "@hail2u/hail2u-ipsum",
-	"version": "0.2.6",
-	"description": "Generating dummy text from Hail2u website",
-	"homepage": "https://github.com/hail2u/hail2u-ipsum#readme",
-	"bugs": {
-		"url": "https://github.com/hail2u/hail2u-ipsum/issues"
-	},
-	"license": "MIT",
-	"author": "Kyo Nagashima <hail2u@gmail.com> (https://hail2u.net/)",
-	"files": [
-		"sentences.json"
-	],
-	"bin": {
-		"hail2u-ipsum": "index.js"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git://github.com/hail2u/hail2u-ipsum.git"
-	},
-	"dependencies": {
-		"he": "1.2.0",
-		"minimist": "1.2.6"
-	},
-	"devDependencies": {
-		"eslint": "7.22.0",
-		"node-fetch": "2.6.7",
-		"prettier": "2.2.1"
-	},
-	"scripts": {
-		"test": "prettier --loglevel warn --write . && eslint ."
-	},
-	"private": "true",
-	"type": "module"
+  "name": "@hail2u/hail2u-ipsum",
+  "version": "0.2.6",
+  "description": "Generating dummy text from Hail2u website",
+  "homepage": "https://github.com/hail2u/hail2u-ipsum#readme",
+  "bugs": {
+    "url": "https://github.com/hail2u/hail2u-ipsum/issues"
+  },
+  "license": "MIT",
+  "author": "Kyo Nagashima <hail2u@gmail.com> (https://hail2u.net/)",
+  "files": [
+    "sentences.json"
+  ],
+  "bin": {
+    "hail2u-ipsum": "index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/hail2u/hail2u-ipsum.git"
+  },
+  "dependencies": {
+    "he": "1.2.0",
+    "minimist": "1.2.6"
+  },
+  "devDependencies": {
+    "eslint": "7.22.0",
+    "node-fetch": "2.6.7",
+    "prettier": "2.2.1"
+  },
+  "scripts": {
+    "test": "prettier --loglevel warn --write . && eslint ."
+  },
+  "private": "true",
+  "type": "module"
 }
