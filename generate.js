@@ -8,6 +8,10 @@ const main = async () => {
 	const articles = await res.json();
 	const sentences = articles
 		.map((article) => {
+			if (article.link.startsWith("/documents/")) {
+				return [];
+			}
+
 			const txt = article.body
 				.match(/<p>.*?<\/p>/gu)
 				?.map((p) => p.replace(/<.*?>/gu, ""))
@@ -30,7 +34,7 @@ const main = async () => {
 		})
 		.flat()
 		.filter((sentence) => sentence);
-	await fs.writeFile("sentences.json", JSON.stringify(sentences, null, "\t"));
+	await fs.writeFile("sentences.json", JSON.stringify(sentences, null, 2));
 };
 
 main().catch((e) => {
