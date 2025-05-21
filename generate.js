@@ -1,10 +1,20 @@
-import fetch from "node-fetch";
 import fs from "fs/promises";
 
 const src = "https://github.com/hail2u/hail2u.net/raw/main/data/articles.json";
+const abortController = new AbortController();
+const abortID = setTimeout(() => {
+  abortController.abort();
+}, 5000);
 
-const main = async () => {
-  const res = await fetch(src);
+try {
+  const res = await fetch(src, {
+    signal: abortController.signal,
+  });
+
+  if (!res.ok) {
+    throw new Error(`${res.status} ${res.statusText}`);
+  }
+
   const articles = await res.json();
   const sentences = articles
     .map((article) => {
@@ -35,9 +45,12 @@ const main = async () => {
     .flat()
     .filter((sentence) => sentence);
   await fs.writeFile("sentences.json", JSON.stringify(sentences, null, 2));
-};
+} catch (e) {
+  if (e.name === "AbortError") {
+    throw new Error(`${src} does not respond in 5s.`);
+  }
 
-main().catch((e) => {
-  console.trace(e);
-  process.exitCode = 1;
-});
+  throw e;
+} finally {
+  clearTimeout(abortID);
+}
