@@ -67,11 +67,11 @@ const sentencesFile = new URL("./sentences.json", import.meta.url);
 const sentences = JSON.parse(fs.readFileSync(sentencesFile, "utf8"));
 let result = [];
 
-for (let i = 0; i < amount; i++) {
+for (let i = 0; i < amount; i += 1) {
   const bmount = Math.floor(Math.random() * 6 + 3);
   let block = [];
 
-  for (let j = 0; j < bmount; j++) {
+  for (let j = 0; j < bmount; j += 1) {
     block.push(sentences[Math.floor(Math.random() * sentences.length)]);
   }
 
@@ -85,15 +85,14 @@ for (let i = 0; i < amount; i++) {
     }
 
     result.push(block.join("\n"));
-    continue;
-  }
+  } else {
+    if (format === "html") {
+      block.unshift("<p>");
+      block.push("</p>");
+    }
 
-  if (format === "html") {
-    block.unshift("<p>");
-    block.push("</p>");
+    result.push(block.join(""));
   }
-
-  result.push(block.join(""));
 }
 
 if (format === "txt") {
